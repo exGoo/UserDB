@@ -8,7 +8,7 @@ public class Util {
         Connection connection;
         final String NAME_USER  = "root";
         final String NAME_PASS = "---VLAD---xXx---2000";
-        final String URL = "jdbc:mysql://localhost:3306/mysql";
+        final String URL = "jdbc:mysql://localhost:3306/jdbc";
 
         try {
             connection = DriverManager.getConnection(URL, NAME_USER, NAME_PASS);
