@@ -26,6 +26,10 @@ public class UserDaoHibernateImpl implements UserDao {
                     .executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            sessionFactory
+                    .getCurrentSession()
+                    .getTransaction()
+                    .rollback();
             throw new RuntimeException(e);
         }
     }
@@ -38,6 +42,10 @@ public class UserDaoHibernateImpl implements UserDao {
                     .executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            sessionFactory
+                    .getCurrentSession()
+                    .getTransaction()
+                    .rollback();
             throw new RuntimeException(e);
         }
     }
@@ -49,6 +57,10 @@ public class UserDaoHibernateImpl implements UserDao {
             session.save(new User(name, lastName, age));
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            sessionFactory
+                    .getCurrentSession()
+                    .getTransaction()
+                    .rollback();
             throw new RuntimeException(e);
         }
     }
@@ -60,6 +72,10 @@ public class UserDaoHibernateImpl implements UserDao {
             session.delete(session.get(User.class, id));
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            sessionFactory
+                    .getCurrentSession()
+                    .getTransaction()
+                    .rollback();
             throw new RuntimeException(e);
         }
     }
@@ -72,6 +88,10 @@ public class UserDaoHibernateImpl implements UserDao {
             list = session.createNativeQuery("SELECT * FROM Users", User.class).list();
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            sessionFactory
+                    .getCurrentSession()
+                    .getTransaction()
+                    .rollback();
             throw new RuntimeException(e);
         }
         return list;
@@ -84,6 +104,10 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createSQLQuery("TRUNCATE TABLE Users").executeUpdate();
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            sessionFactory
+                    .getCurrentSession()
+                    .getTransaction()
+                    .rollback();
             throw new RuntimeException(e);
         }
     }
